@@ -15,5 +15,10 @@
   "bugs": {
     "url": "https://github.com/KarkenVisualGit/otus-game-of-life-2023/issues"
   },
-  "homepage": "https://github.com/KarkenVisualGit/otus-game-of-life-2023#readme"
+  "homepage": "https://github.com/KarkenVisualGit/otus-game-of-life-2023#readme",
+  "devDependencies": {
+    "webpack": "^5.89.0",
+    "webpack-cli": "^5.1.4",
+    "webpack-dev-server": "^4.15.1"
+  }
 }
