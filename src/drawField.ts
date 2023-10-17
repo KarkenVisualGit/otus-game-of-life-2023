@@ -5,10 +5,10 @@
  * @param onCellClick {(x: number, y: number) => void}
  * @returns void
  */
-// @ts-ignore
+
 export function drawField(htmlElement, field, onCellClick) {
-  const rowIterator = (row, rowIndex) => {
-    return `<tr>${row
+  const rowIterator = (row, rowIndex) =>
+    `<tr>${row
       .map((cell, columnIndex) => {
         if (cell === 1) {
           return `<td 
@@ -24,7 +24,6 @@ export function drawField(htmlElement, field, onCellClick) {
         style="background-color:#FFFFFF; height:10px; width:10px;"></td>`;
       })
       .join("")}</tr>`;
-  };
 
   const table = `<table border=1>${field.map(rowIterator).join("")}</table>`;
 
@@ -33,9 +32,9 @@ export function drawField(htmlElement, field, onCellClick) {
 
   htmlElement.querySelector("table").addEventListener("click", (ev) => {
     const clickedElement = ev.target;
-    // @ts-ignore
+
     const x = clickedElement.getAttribute("data-x");
-    // @ts-ignore
+
     const y = clickedElement.getAttribute("data-y");
     if (x >= 0 && y >= 0) {
       onCellClick(Number(x), Number(y));

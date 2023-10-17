@@ -6,3 +6,4 @@ jest.config.js
 /prod
 webpack.config.js
 webpack.config.prod.js
+jest.config.ts

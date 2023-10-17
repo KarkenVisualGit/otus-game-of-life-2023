@@ -6,7 +6,7 @@ module.exports = {
     "node": true,
   },
   extends: [
-    "eslint:recommended",
+    "airbnb-base",
     "plugin:jest/recommended",
     "plugin:@typescript-eslint/recommended",
     "prettier",
@@ -14,35 +14,12 @@ module.exports = {
   parser: "@typescript-eslint/parser",
   plugins: ["@typescript-eslint"],
   root: true,
-  overrides: [
-    {
-      files: ["test/**", ".eslintrc.{js,cjs}"],
-      plugins: ["jest", "css", "html"],
-      extends: ["plugin:jest/recommended"],
-      rules: { "jest/prefer-expect-assertions": "off" },
-      env: {
-        "jest/globals": true,
-        "node": true,
-      },
-      parserOptions: {
-        sourceType: "script",
-      },
-    },
-  ],
   parserOptions: {
     ecmaVersion: "latest",
     sourceType: "module",
   },
   rules: {
-    "import/extensions": [
-      "warn",
-      "never",
-      "error",
-      "ignorePackages",
-      {
-        js: "always",
-      },
-    ],
+    "import/extensions": ["warn", "never"],
     "import/prefer-default-export": "off",
     "jest/valid-title": "off",
     "no-console": "off",
