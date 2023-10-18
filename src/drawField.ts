@@ -14,14 +14,12 @@ export function drawField(htmlElement, field, onCellClick) {
           return `<td 
           data-x=${columnIndex}
           data-y=${rowIndex}
-          class="cell alive" 
-          style="background-color:#FA58D0; height:10px; width:10px;"></td>`;
+          class="cell-alive"></td>`;
         }
         return `<td 
         data-x=${columnIndex}
         data-y=${rowIndex}
-        class="cell dead" 
-        style="background-color:#FFFFFF; height:10px; width:10px;"></td>`;
+        class="cell-dead"></td>`;
       })
       .join("")}</tr>`;
 

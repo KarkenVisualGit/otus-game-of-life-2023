@@ -1,0 +1,35 @@
+.field-wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+button {
+    display: flex;
+    flex-wrap: wrap;
+    align-self: center;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+}
+
+.cell-alive {
+    background-color: #036d21;
+    height: 10px;
+    width: 10px;
+
+}
+
+.cell-dead {
+    background-color: #FFFFFF;
+    height: 10px;
+    width: 10px;
+}
