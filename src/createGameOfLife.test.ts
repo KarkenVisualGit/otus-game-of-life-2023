@@ -4,10 +4,10 @@ import { drawField } from "./drawField";
 
 jest.mock("./drawField");
 
-const sleep = (x) => new Promise((resolve) => setTimeout(resolve, x));
+const sleep = (x: Object) => new Promise((resolve) => setTimeout(resolve, x));
 
 describe("createGameOfLife", () => {
-  let element;
+  let element: any;
   const originalAlert = window.alert;
   beforeEach(() => {
     element = document.createElement("div");
