@@ -11,9 +11,9 @@ import { isAnyoneAlive } from "./isAnyoneAlive";
  * @param htmlElement {HTMLElement} - элемент, в котором будет отрисована игра
  * @returns void
  */
-export function createGameOfLife(sizeX, sizeY, htmlElement) {
+export function createGameOfLife(sizeX: number, sizeY: number, htmlElement: Element) {
   let gameIsRunning = false;
-  let timer;
+  let timer: number;
 
   // Создать блок для поля
   // Создать кнопку управления игрой
@@ -27,7 +27,7 @@ export function createGameOfLife(sizeX, sizeY, htmlElement) {
     Array.from({ length: sizeX }).fill(0)
   );
 
-  const cellClickHandler = (x, y) => {
+  const cellClickHandler = (x: number, y: number) => {
     field[y][x] = field[y][x] === 0 ? 1 : 0;
     drawField(fieldWrapper, field, cellClickHandler);
   };
@@ -39,7 +39,7 @@ export function createGameOfLife(sizeX, sizeY, htmlElement) {
   // - перерисовать поле
   function stopGame() {
     gameIsRunning = false;
-    button.innerHTML = "Start";
+    button!.innerHTML = "Start";
     // При клике на кнопке `Stop` остановить таймер
     clearInterval(timer);
   }
@@ -47,9 +47,9 @@ export function createGameOfLife(sizeX, sizeY, htmlElement) {
     // При клике по кнопке старт
     // - поменять надпись на `Stop`
     gameIsRunning = true;
-    button.innerHTML = "Stop";
+    button!.innerHTML = "Stop";
     // - запустить таймер для обновления поля
-    timer = setInterval(() => {
+    timer = <number><any>setInterval(() => {
       // В таймере обновления поля
       // - посчитать новое состояние поля
       // - отрисовать новое состояние поля
@@ -66,7 +66,7 @@ export function createGameOfLife(sizeX, sizeY, htmlElement) {
     }, 1000);
   }
 
-  button.addEventListener("click", () => {
+  button!.addEventListener("click", () => {
     if (!gameIsRunning) {
       startGame();
     } else {
