@@ -45,9 +45,9 @@ describe("drawField", () => {
       cell1.click();
       expect(onCellClick).toHaveBeenCalledWith(1, 2);
 
-      const cell2 = el.querySelector(".cell-alive[data-x=\"2\"][data-y=\"0\"]") as HTMLElement;
+      const cell2 = el.querySelector(".cell-alive[data-x=\"2\"][data-y=\"1\"]") as HTMLElement;
       cell2.click();
-      expect(onCellClick).toHaveBeenCalledWith(2, 0);
+      expect(onCellClick).toHaveBeenCalledWith(2, 1);
     });
 
     it("calls onCellClick only once on multiple drawing", () => {
