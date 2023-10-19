@@ -1,0 +1,27 @@
+name: Sanity Check
+
+on:
+  push:
+    branches: ["otus-game-of-life"]
+  pull_request:
+    branches: ["otus-game-of-life"]
+permissions:
+  contents: write
+
+jobs:
+  lint:
+    runs-on: ubuntu-20.04
+    permissions: write-all
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Install Packages
+        run: |
+          npm install
+
+      - name: Lint check
+        run: |
+          npm run lint:fix
