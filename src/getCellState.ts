@@ -5,7 +5,7 @@
  * @param y {number} - номер строки
  * @return number
  */
-export function getCellState(field, x, y) {
+export function getCellState(field: number[][], x: number, y: number) {
   const row = field[y];
   if (row === undefined) {
     return 0;
