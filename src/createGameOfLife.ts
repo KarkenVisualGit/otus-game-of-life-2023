@@ -19,7 +19,7 @@ export function createGameOfLife(sizeX: number, sizeY: number, htmlElement: HTML
   // Создать кнопку управления игрой
   htmlElement.innerHTML =
     "<div class=\"field-wrapper\"></div><div class=\"field\"><button>Start</button></div>";
-  const fieldWrapper = htmlElement.querySelector(".field-wrapper");
+  const fieldWrapper = htmlElement.querySelector(".field-wrapper") as HTMLElement;
   const button = htmlElement.querySelector("button");
 
   if (!fieldWrapper || !button) {

@@ -6,8 +6,11 @@
  * @returns void
  */
 
-export function drawField(htmlElement: Element, field, onCellClick: Function) {
-  const rowIterator = (row: [], rowIndex: number) =>
+export function drawField(
+  htmlElement: HTMLElement,
+  field: number[][],
+  onCellClick: (x: number, y: number) => void): void {
+  const rowIterator = (row: number[], rowIndex: number) =>
     `<tr>${row
       .map((cell: number, columnIndex: number) => {
         if (cell === 1) {
@@ -29,12 +32,12 @@ export function drawField(htmlElement: Element, field, onCellClick: Function) {
   htmlElement.innerHTML = table;
 
   htmlElement.querySelector("table")!.addEventListener("click", (ev) => {
-    const clickedElement = ev.target;
+    const clickedElement = ev.target as HTMLElement;
 
     const x = clickedElement.getAttribute("data-x");
 
     const y = clickedElement.getAttribute("data-y");
-    if (x >= 0 && y >= 0) {
+    if (x && y) {
       onCellClick(Number(x), Number(y));
     }
   });
