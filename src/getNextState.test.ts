@@ -4,7 +4,7 @@ import { getNextState } from "./getNextState";
  * @param {number[][]} field
  * @returns string
  */
-function fieldToStr(field) {
+function fieldToStr(field: number[][]) {
   return `\n${field.map((el) => el.join("")).join("\n")}\n`;
 }
 
