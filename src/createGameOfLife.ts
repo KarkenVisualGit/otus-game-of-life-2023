@@ -21,12 +21,52 @@ export function createGameOfLife(
 
   // Создать блок для поля
   // Создать кнопку управления игрой
-  htmlElement.innerHTML =
-    "<div class=\"field-wrapper\"></div><div class=\"field\"><button>Start</button></div>";
+  htmlElement.innerHTML = `
+  <div class="label-elements">
+    <label for="sizeX">Size X: </label>
+    <input class="sizeX" type="number" value="${sizeX}" min="3"/>
+    <label for="sizeY">Size Y: </label>
+    <input class="sizeY" type="number" value="${sizeY}" min="3"/>
+    <button class="resizeButton">Resize</button>
+  </div>
+  <div class="field-wrapper"></div>
+  <div class="field"><button class="startbutton">Start</button></div>`;
+
+  const sizeXInput = htmlElement.querySelector(".sizeX") as HTMLInputElement;
+  const sizeYInput = htmlElement.querySelector(".sizeY") as HTMLInputElement;
+  const resizeButton = htmlElement.querySelector(".resizeButton");
+
+  resizeButton!.addEventListener("click", () => {
+    const newSizeX = parseInt(sizeXInput!.value, 10);
+    const newSizeY = parseInt(sizeYInput!.value, 10);
+
+    // Увеличиваем или уменьшаем размер поля
+    if (newSizeX > field[0].length) {
+      for (let i = 0; i < field.length; i++) {
+        field[i].push(...new Array(newSizeX - field[i].length).fill(0));
+      }
+    } else if (newSizeX < field[0].length) {
+      for (let i = 0; i < field.length; i++) {
+        field[i] = field[i].slice(0, newSizeX);
+      }
+    }
+
+    if (newSizeY > field.length) {
+      const newRows = Array.from({ length: newSizeY - field.length })
+      .map(() => new Array(newSizeX).fill(0));
+      field.push(...newRows);
+    } else if (newSizeY < field.length) {
+      field = field.slice(0, newSizeY);
+    }
+
+    // Перерисовываем поле
+    drawField(fieldWrapper, field, cellClickHandler);
+  });
+
   const fieldWrapper = htmlElement.querySelector(
     ".field-wrapper"
   ) as HTMLElement;
-  const button = htmlElement.querySelector("button");
+  const button = htmlElement.querySelector(".startbutton");
 
   if (!fieldWrapper || !button) {
     throw new Error("Failed to select necessary DOM elements.");
