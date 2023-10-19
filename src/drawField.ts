@@ -26,7 +26,7 @@ export function drawField(
       })
       .join("")}</tr>`;
 
-  const table = `<table border=1>${field.map(rowIterator).join("")}</table>`;
+  const table = `<table border=2>${field.map(rowIterator).join("")}</table>`;
 
   // eslint-disable-next-line no-param-reassign
   htmlElement.innerHTML = table;
