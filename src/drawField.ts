@@ -9,7 +9,8 @@
 export function drawField(
   htmlElement: HTMLElement,
   field: number[][],
-  onCellClick: (x: number, y: number) => void): void {
+  onCellClick: (x: number, y: number) => void
+): void {
   const rowIterator = (row: number[], rowIndex: number) =>
     `<tr>${row
       .map((cell: number, columnIndex: number) => {

@@ -11,7 +11,11 @@ import { isAnyoneAlive } from "./isAnyoneAlive";
  * @param htmlElement {HTMLElement} - элемент, в котором будет отрисована игра
  * @returns void
  */
-export function createGameOfLife(sizeX: number, sizeY: number, htmlElement: HTMLElement): void {
+export function createGameOfLife(
+  sizeX: number,
+  sizeY: number,
+  htmlElement: HTMLElement
+): void {
   let gameIsRunning = false;
   let timer: ReturnType<typeof setInterval>;
 
@@ -19,7 +23,9 @@ export function createGameOfLife(sizeX: number, sizeY: number, htmlElement: HTML
   // Создать кнопку управления игрой
   htmlElement.innerHTML =
     "<div class=\"field-wrapper\"></div><div class=\"field\"><button>Start</button></div>";
-  const fieldWrapper = htmlElement.querySelector(".field-wrapper") as HTMLElement;
+  const fieldWrapper = htmlElement.querySelector(
+    ".field-wrapper"
+  ) as HTMLElement;
   const button = htmlElement.querySelector("button");
 
   if (!fieldWrapper || !button) {

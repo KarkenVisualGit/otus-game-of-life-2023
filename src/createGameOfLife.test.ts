@@ -48,6 +48,7 @@ describe("createGameOfLife", () => {
       );
     });
     it("redraw field on interaction with it", () => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       let onCellClick = (x: number, y: number) => {};
       mockedDrawField.mockImplementation((fieldEl, field, cellClickHandler) => {
         onCellClick = cellClickHandler;
@@ -84,6 +85,7 @@ describe("createGameOfLife", () => {
       );
     });
     it("on start it runs 1sec timer to update state", async () => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       let onCellClick = (x: number, y: number) => {};
       mockedDrawField.mockImplementation((fieldEl, field, cellClickHandler) => {
         onCellClick = cellClickHandler;
@@ -107,6 +109,7 @@ describe("createGameOfLife", () => {
       );
     });
     it("stops game with alert, when none alive", async () => {
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
       let onCellClick = (x: number, y: number) => {};
       mockedDrawField.mockImplementation((fieldEl, field, cellClickHandler) => {
         onCellClick = cellClickHandler;

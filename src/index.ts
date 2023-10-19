@@ -3,7 +3,8 @@
 // - создать элемент и добавить его на страницу
 // - создать на этом элементе игру с помощью `createGameOfLife` с размерами поля x / y
 import "./css/style.css";
-const { createGameOfLife } = require("./createGameOfLife");
+
+import { createGameOfLife } from "./createGameOfLife";
 
 const gameWrapper1 = document.createElement("div");
 const gameWrapper2 = document.createElement("div");

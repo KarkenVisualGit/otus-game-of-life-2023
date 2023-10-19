@@ -25,6 +25,7 @@ module.exports = {
     "no-console": "off",
     "no-alert": "off",
     "no-restricted-globals": "off",
+    "no-promise-executor-return": "off",
     "no-plusplus": "off",
     "semi": ["error", "always"],
     "quotes": ["error", "double"],
