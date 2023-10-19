@@ -14,10 +14,6 @@ module.exports = {
   parser: "@typescript-eslint/parser",
   plugins: ["@typescript-eslint"],
   root: true,
-  parserOptions: {
-    ecmaVersion: "latest",
-    sourceType: "module",
-  },
   rules: {
     "import/extensions": ["warn", "never"],
     "import/prefer-default-export": "off",
