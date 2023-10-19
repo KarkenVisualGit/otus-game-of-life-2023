@@ -35,6 +35,23 @@ export function createGameOfLife(
   const sizeXInput = htmlElement.querySelector(".sizeX") as HTMLInputElement;
   const sizeYInput = htmlElement.querySelector(".sizeY") as HTMLInputElement;
   const resizeButton = htmlElement.querySelector(".resizeButton");
+  // Создать поле заданного размера
+  let field: number[][] = Array.from({ length: sizeY }).map(() =>
+    Array.from({ length: sizeX }).map(() => 0)
+  );
+  const fieldWrapper = htmlElement.querySelector(
+    ".field-wrapper"
+  ) as HTMLElement;
+  const button = htmlElement.querySelector(".startbutton");
+
+  if (!fieldWrapper || !button) {
+    throw new Error("Failed to select necessary DOM elements.");
+  }
+
+  const cellClickHandler = (x: number, y: number): void => {
+    field[y][x] = field[y][x] === 0 ? 1 : 0;
+    drawField(fieldWrapper, field, cellClickHandler);
+  };
 
   resizeButton!.addEventListener("click", () => {
     const newSizeX = parseInt(sizeXInput!.value, 10);
@@ -52,8 +69,9 @@ export function createGameOfLife(
     }
 
     if (newSizeY > field.length) {
-      const newRows = Array.from({ length: newSizeY - field.length })
-      .map(() => new Array(newSizeX).fill(0));
+      const newRows = Array.from({ length: newSizeY - field.length }).map(() =>
+        new Array(newSizeX).fill(0)
+      );
       field.push(...newRows);
     } else if (newSizeY < field.length) {
       field = field.slice(0, newSizeY);
@@ -62,24 +80,6 @@ export function createGameOfLife(
     // Перерисовываем поле
     drawField(fieldWrapper, field, cellClickHandler);
   });
-
-  const fieldWrapper = htmlElement.querySelector(
-    ".field-wrapper"
-  ) as HTMLElement;
-  const button = htmlElement.querySelector(".startbutton");
-
-  if (!fieldWrapper || !button) {
-    throw new Error("Failed to select necessary DOM elements.");
-  }
-  // Создать поле заданного размера
-  let field: number[][] = Array.from({ length: sizeY }).map(() =>
-    Array.from({ length: sizeX }).map(() => 0)
-  );
-
-  const cellClickHandler = (x: number, y: number): void => {
-    field[y][x] = field[y][x] === 0 ? 1 : 0;
-    drawField(fieldWrapper, field, cellClickHandler);
-  };
 
   // Отрисовать поле заданного размера
   drawField(fieldWrapper, field, cellClickHandler);

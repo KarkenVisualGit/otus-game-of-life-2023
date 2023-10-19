@@ -24,7 +24,9 @@ describe("Resizing functionality in createGameOfLife", () => {
   it("increases the field size correctly", () => {
     const sizeXInput = htmlElement.querySelector(".sizeX") as HTMLInputElement;
     const sizeYInput = htmlElement.querySelector(".sizeY") as HTMLInputElement;
-    const resizeButton = htmlElement.querySelector(".resizeButton") as HTMLButtonElement;
+    const resizeButton = htmlElement.querySelector(
+      ".resizeButton"
+    ) as HTMLButtonElement;
 
     sizeXInput.value = "7";
     sizeYInput.value = "6";
@@ -32,14 +34,16 @@ describe("Resizing functionality in createGameOfLife", () => {
 
     const mockCalls = mockedDrawField.mock.calls;
     const lastFieldDrawn = mockCalls[mockCalls.length - 1][1];
-    expect(lastFieldDrawn.length).toBe(6);  // Rows
-    expect(lastFieldDrawn[0].length).toBe(7);  // Columns
+    expect(lastFieldDrawn).toHaveLength(6); // Rows
+    expect(lastFieldDrawn[0]).toHaveLength(7); // Columns
   });
 
   it("decreases the field size correctly", () => {
     const sizeXInput = htmlElement.querySelector(".sizeX") as HTMLInputElement;
     const sizeYInput = htmlElement.querySelector(".sizeY") as HTMLInputElement;
-    const resizeButton = htmlElement.querySelector(".resizeButton") as HTMLButtonElement;
+    const resizeButton = htmlElement.querySelector(
+      ".resizeButton"
+    ) as HTMLButtonElement;
 
     sizeXInput.value = "3";
     sizeYInput.value = "3";
@@ -47,8 +51,8 @@ describe("Resizing functionality in createGameOfLife", () => {
 
     const mockCalls = mockedDrawField.mock.calls;
     const lastFieldDrawn = mockCalls[mockCalls.length - 1][1];
-    expect(lastFieldDrawn.length).toBe(3);  // Rows
-    expect(lastFieldDrawn[0].length).toBe(3);  // Columns
+    expect(lastFieldDrawn).toHaveLength(3); // Rows
+    expect(lastFieldDrawn[0]).toHaveLength(3); // Columns
   });
 });
 
@@ -72,7 +76,9 @@ describe("createGameOfLife", () => {
     });
     it("changes button name on click", () => {
       createGameOfLife(10, 10, element);
-      const startbutton = element.querySelector(".startbutton") as HTMLButtonElement;
+      const startbutton = element.querySelector(
+        ".startbutton"
+      ) as HTMLButtonElement;
       expect(startbutton.innerHTML).toBe("Start");
       startbutton.click();
       expect(startbutton.innerHTML).toBe("Stop");
@@ -95,7 +101,7 @@ describe("createGameOfLife", () => {
     });
     it("redraw field on interaction with it", () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      let onCellClick = (x: number, y: number) => { };
+      let onCellClick = (x: number, y: number) => {};
       mockedDrawField.mockImplementation((fieldEl, field, cellClickHandler) => {
         onCellClick = cellClickHandler;
         fieldEl.innerHTML = `drawField(${JSON.stringify(field)})`;
@@ -131,16 +137,17 @@ describe("createGameOfLife", () => {
       );
     });
     it("on start it runs 1sec timer to update state", async () => {
-      
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      let onCellClick = (x: number, y: number) => { };
+      let onCellClick = (x: number, y: number) => {};
       mockedDrawField.mockImplementation((fieldEl, field, cellClickHandler) => {
         onCellClick = cellClickHandler;
         fieldEl.innerHTML = `drawField(${JSON.stringify(field)})`;
       });
       createGameOfLife(2, 2, element);
       onCellClick(0, 0);
-      const startbutton = element.querySelector(".startbutton") as HTMLButtonElement;
+      const startbutton = element.querySelector(
+        ".startbutton"
+      ) as HTMLButtonElement;
       startbutton.click();
       expect(element.querySelector(".field-wrapper")!.innerHTML).toBe(
         `drawField(${JSON.stringify([
@@ -158,14 +165,16 @@ describe("createGameOfLife", () => {
     });
     it("stops game with alert, when none alive", async () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      let onCellClick = (x: number, y: number) => { };
+      let onCellClick = (x: number, y: number) => {};
       mockedDrawField.mockImplementation((fieldEl, field, cellClickHandler) => {
         onCellClick = cellClickHandler;
         fieldEl.innerHTML = `drawField(${JSON.stringify(field)})`;
       });
       createGameOfLife(2, 2, element);
       onCellClick(0, 0);
-      const startbutton = element.querySelector(".startbutton") as HTMLButtonElement;
+      const startbutton = element.querySelector(
+        ".startbutton"
+      ) as HTMLButtonElement;
       startbutton.click();
       await sleep(1000);
       expect(window.alert).toHaveBeenCalledWith("Death on the block");
