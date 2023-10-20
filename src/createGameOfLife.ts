@@ -40,12 +40,13 @@ export function createGameOfLife(
   <div class="field-wrapper"></div>
   <div class="field"><button class="startbutton">Start</button></div>`;
 
-  const gameSpeedInput = htmlElement.querySelector(".gameSpeed") as HTMLInputElement;
+  const gameSpeedInput = htmlElement.querySelector(
+    ".gameSpeed"
+  ) as HTMLInputElement;
   const sizeXInput = htmlElement.querySelector(".sizeX") as HTMLInputElement;
   const sizeYInput = htmlElement.querySelector(".sizeY") as HTMLInputElement;
   const resizeButton = htmlElement.querySelector(".resizeButton");
-
-
+  let gameSpeed = 1000;
   let field: number[][] = Array.from({ length: sizeY }).map(() =>
     Array.from({ length: sizeX }).map(() => 0)
   );
@@ -58,17 +59,6 @@ export function createGameOfLife(
     field[y][x] = field[y][x] === 0 ? 1 : 0;
     drawField(fieldWrapper, field, cellClickHandler);
   };
-
-  function updateGame() {
-    field = getNextState(field);
-    if (fieldWrapper) {
-      drawField(fieldWrapper, field, cellClickHandler);
-    }
-    if (!isAnyoneAlive(field)) {
-      alert("Death on the block");
-      stopGame();
-    }
-  }
 
   resizeButton!.addEventListener("click", () => {
     const newSizeX = parseInt(sizeXInput!.value, 10);
@@ -98,17 +88,6 @@ export function createGameOfLife(
     drawField(fieldWrapper, field, cellClickHandler);
   });
 
-  let gameSpeed = 1000; // значение по умолчанию
-
-  function handleSpeedChange() {
-    gameSpeed = parseInt(gameSpeedInput.value, 10);
-
-    if (gameIsRunning) {
-      clearInterval(timer);
-      timer = setInterval(updateGame, gameSpeed);
-    }
-  }
-
   // Отрисовать поле заданного размера
   drawField(fieldWrapper, field, cellClickHandler);
   // При клике по ячейке поля
@@ -122,6 +101,18 @@ export function createGameOfLife(
       clearInterval(timer);
     }
   }
+
+  function updateGame() {
+    field = getNextState(field);
+    if (fieldWrapper) {
+      drawField(fieldWrapper, field, cellClickHandler);
+    }
+    if (!isAnyoneAlive(field)) {
+      alert("Death on the block");
+      stopGame();
+    }
+  }
+
   function startGame(): void {
     // При клике по кнопке старт
     // - поменять надпись на `Stop`
@@ -141,6 +132,15 @@ export function createGameOfLife(
     // }, 1000);
   }
 
+  function handleSpeedChange() {
+    gameSpeed = parseInt(gameSpeedInput.value, 10);
+
+    if (gameIsRunning) {
+      clearInterval(timer);
+      timer = setInterval(updateGame, gameSpeed);
+    }
+  }
+
   button!.addEventListener("click", () => {
     if (!gameIsRunning) {
       startGame();
@@ -151,5 +151,3 @@ export function createGameOfLife(
 
   gameSpeedInput.addEventListener("input", handleSpeedChange);
 }
-
-

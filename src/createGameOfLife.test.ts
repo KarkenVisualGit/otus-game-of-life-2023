@@ -24,7 +24,6 @@ describe("Resizing functionality in createGameOfLife", () => {
     expect(htmlElement.querySelector(".gameSpeed")).not.toBeNull();
   });
 
-
   it("renders size inputs and resize button", () => {
     expect(htmlElement.querySelector(".sizeX")).not.toBeNull();
     expect(htmlElement.querySelector(".sizeY")).not.toBeNull();
@@ -111,7 +110,7 @@ describe("createGameOfLife", () => {
     });
     it("redraw field on interaction with it", () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      let onCellClick = (x: number, y: number) => { };
+      let onCellClick = (x: number, y: number) => {};
       mockedDrawField.mockImplementation((fieldEl, field, cellClickHandler) => {
         onCellClick = cellClickHandler;
         fieldEl.innerHTML = `drawField(${JSON.stringify(field)})`;
@@ -148,7 +147,7 @@ describe("createGameOfLife", () => {
     });
     it("on start it runs 1sec timer to update state", async () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      let onCellClick = (x: number, y: number) => { };
+      let onCellClick = (x: number, y: number) => {};
       mockedDrawField.mockImplementation((fieldEl, field, cellClickHandler) => {
         onCellClick = cellClickHandler;
         fieldEl.innerHTML = `drawField(${JSON.stringify(field)})`;
@@ -175,7 +174,7 @@ describe("createGameOfLife", () => {
     });
     it("stops game with alert, when none alive", async () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      let onCellClick = (x: number, y: number) => { };
+      let onCellClick = (x: number, y: number) => {};
       mockedDrawField.mockImplementation((fieldEl, field, cellClickHandler) => {
         onCellClick = cellClickHandler;
         fieldEl.innerHTML = `drawField(${JSON.stringify(field)})`;
@@ -206,7 +205,8 @@ describe("Game speed control in createGameOfLife", () => {
   });
 
   it("changes game speed correctly", async () => {
-    let onCellClick = (x: number, y: number) => { };
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    let onCellClick = (x: number, y: number) => {};
     // Переопределение мок-функции drawField для получения функции onCellClick
     mockedDrawField.mockImplementation((fieldEl, field, cellClickHandler) => {
       onCellClick = cellClickHandler;
@@ -216,13 +216,17 @@ describe("Game speed control in createGameOfLife", () => {
     createGameOfLife(2, 2, htmlElement);
     onCellClick(0, 0); // активация клетки перед началом игры
 
-    const gameSpeedInput = htmlElement.querySelector(".gameSpeed") as HTMLInputElement;
-    const startbutton = htmlElement.querySelector(".startbutton") as HTMLButtonElement;
+    const gameSpeedInput = htmlElement.querySelector(
+      ".gameSpeed"
+    ) as HTMLInputElement;
+    const startbutton = htmlElement.querySelector(
+      ".startbutton"
+    ) as HTMLButtonElement;
     // Меняем скорость игры на 2000ms
     gameSpeedInput.value = "2000";
-    const event = new Event('input', {
-      'bubbles': true,
-      'cancelable': true
+    const event = new Event("input", {
+      bubbles: true,
+      cancelable: true,
     });
     gameSpeedInput.dispatchEvent(event);
     startbutton.click();
@@ -263,18 +267,23 @@ describe("createGameOfLife - Game Speed Change During Play", () => {
   });
 
   it("updates the game speed while the game is running", () => {
-    const gameSpeedInput = htmlElement.querySelector(".gameSpeed") as HTMLInputElement;
-    const startbutton = htmlElement.querySelector(".startbutton") as HTMLButtonElement;
+    const gameSpeedInput = htmlElement.querySelector(
+      ".gameSpeed"
+    ) as HTMLInputElement;
+    const startbutton = htmlElement.querySelector(
+      ".startbutton"
+    ) as HTMLButtonElement;
 
     const mockSetInterval = jest.fn(originalSetInterval);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (global.setInterval as any) = mockSetInterval;
 
     startbutton.click();
 
     gameSpeedInput.value = "1500";
-    const event = new Event('input', {
-      'bubbles': true,
-      'cancelable': true
+    const event = new Event("input", {
+      bubbles: true,
+      cancelable: true,
     });
     gameSpeedInput.dispatchEvent(event);
 

@@ -73,32 +73,43 @@ describe("drawField", () => {
 
   describe("cell state visualization", () => {
     it("marks cells with < 2 live neighbours as dying", () => {
-      drawField(el, [
-        [1, 0],
-        [0, 0],
-      ], onCellClick);
+      drawField(
+        el,
+        [
+          [1, 0],
+          [0, 0],
+        ],
+        onCellClick
+      );
       const dyingCell = el.querySelector(".cell-dying");
       expect(dyingCell).not.toBeNull();
     });
 
     it("marks cells with > 3 live neighbours as dying", () => {
-      drawField(el, [
-        [1, 1, 1],
-        [1, 1, 0],
-        [0, 0, 0],
-      ], onCellClick);
+      drawField(
+        el,
+        [
+          [1, 1, 1],
+          [1, 1, 0],
+          [0, 0, 0],
+        ],
+        onCellClick
+      );
       const dyingCell = el.querySelector(".cell-dying");
       expect(dyingCell).not.toBeNull();
     });
 
     it("doesn't mark cells with 2 or 3 live neighbours as dying", () => {
-      drawField(el, [
-        [1, 1],
-        [1, 0],
-      ], onCellClick);
+      drawField(
+        el,
+        [
+          [1, 1],
+          [1, 0],
+        ],
+        onCellClick
+      );
       const dyingCell = el.querySelector(".cell-dying");
       expect(dyingCell).toBeNull();
     });
   });
 });
-

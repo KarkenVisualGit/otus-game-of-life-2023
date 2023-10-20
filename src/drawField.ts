@@ -1,4 +1,4 @@
-import { getNumOfAliveNeighbours } from "./getNumOfAliveNeighbours"
+import { getNumOfAliveNeighbours } from "./getNumOfAliveNeighbours";
 
 /**
  * отрисовка поля
@@ -17,7 +17,11 @@ export function drawField(
     `<tr>${row
       .map((cell: number, columnIndex: number) => {
         if (cell === 1) {
-          const aliveNeighbors = getNumOfAliveNeighbours(columnIndex, rowIndex, field);
+          const aliveNeighbors = getNumOfAliveNeighbours(
+            columnIndex,
+            rowIndex,
+            field
+          );
           if (aliveNeighbors < 2 || aliveNeighbors > 3) {
             // Клетка обречена умереть в следующем поколении
             return `<td 
