@@ -23,14 +23,20 @@ export function createGameOfLife(
   // Создать кнопку управления игрой
   htmlElement.innerHTML = `
   <div class="label-elements">
-  <label for="gameSpeed">Speed: </label>
-  <input class="gameSpeed" type="range" min="100" max="2000" value="1000" step="100"/>
+  <div class="input-wrapper">
+    <label for="gameSpeed">Speed: </label>
+    <input class="gameSpeed" type="range" min="100" max="2000" value="1000" step="100"/>
+  </div>
+  <div class="input-wrapper">
     <label for="sizeX">Size X: </label>
     <input class="sizeX" type="number" value="${sizeX}" min="3"/>
+  </div>
+  <div class="input-wrapper">
     <label for="sizeY">Size Y: </label>
     <input class="sizeY" type="number" value="${sizeY}" min="3"/>
-    <button class="resizeButton">Resize</button>
   </div>
+  <button class="resizeButton">Resize</button>
+</div>
   <div class="field-wrapper"></div>
   <div class="field"><button class="startbutton">Start</button></div>`;
 

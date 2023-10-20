@@ -16,17 +16,22 @@
   align-items: center;
 }
 
+.label-elements > * {
+  margin-bottom: 5px;
+}
+
+.gameSpeed,
 .sizeX,
 .sizeY {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 10px;
+  margin: 5px;
+}
+
+.gameSpeed {
+  padding: 10px;
 }
 
 label {
-  display: flex;
-  flex-direction: row;
-  flex-wrap: wrap;
+  margin-right: 5px;
 }
 
 .resizeButton {
@@ -60,4 +65,19 @@ label {
   background-color: #ffffff;
   height: 10px;
   width: 10px;
+}
+
+.gameSpeed {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  margin: 5px;
 }
