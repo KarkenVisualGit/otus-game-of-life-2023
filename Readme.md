@@ -5,18 +5,24 @@
 ## [Codecov](https://codecov.io/gh/KarkenVisualGit/otus-game-of-life-2023/tree/otus-game-of-life) Report
 
 > :exclamation: No coverage uploaded for pull request base (`main@3459201`). [Click here to learn what that means](https://docs.codecov.io/docs/error-reference?utm_medium=referral&utm_source=github&utm_content=checks&utm_campaign=pr+comments&utm_term=Karken+Turarov#section-missing-base-commit). The diff coverage is `n/a`.
+
+## Additional details and impacted files
+
+```diff
 @@           Coverage Diff            @@
 ##             main        #1   +/-   ##
 ========================================
-  Coverage        ?   100.00%           
+  Coverage        ?   100.00%
 ========================================
-  Files           ?         7           
-  Lines           ?       321           
-  Branches        ?        51           
+  Files           ?         7
+  Lines           ?       321
+  Branches        ?        51
 ========================================
-  Hits            ?       321           
-  Misses          ?         0           
-  Partials        ?         0           
+  Hits            ?       321
+  Misses          ?         0
+  Partials        ?         0
+```
+
 > Данное приложение создано в рамках учебного задания по реализации "Игры Жизнь" на языке Typescript
 
 ## Структура проекта
