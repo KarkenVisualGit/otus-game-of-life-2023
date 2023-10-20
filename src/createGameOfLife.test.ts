@@ -13,7 +13,17 @@ describe("Resizing functionality in createGameOfLife", () => {
   beforeEach(() => {
     htmlElement = document.createElement("div");
     createGameOfLife(5, 5, htmlElement);
+
+    mockedDrawField.mockImplementation((fieldEl, field) => {
+      console.log("drawField called with", field);
+      fieldEl.innerHTML = `drawField(${JSON.stringify(field)})`;
+    });
   });
+
+  it("renders game speed input", () => {
+    expect(htmlElement.querySelector(".gameSpeed")).not.toBeNull();
+  });
+
 
   it("renders size inputs and resize button", () => {
     expect(htmlElement.querySelector(".sizeX")).not.toBeNull();
@@ -101,7 +111,7 @@ describe("createGameOfLife", () => {
     });
     it("redraw field on interaction with it", () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      let onCellClick = (x: number, y: number) => {};
+      let onCellClick = (x: number, y: number) => { };
       mockedDrawField.mockImplementation((fieldEl, field, cellClickHandler) => {
         onCellClick = cellClickHandler;
         fieldEl.innerHTML = `drawField(${JSON.stringify(field)})`;
@@ -138,7 +148,7 @@ describe("createGameOfLife", () => {
     });
     it("on start it runs 1sec timer to update state", async () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      let onCellClick = (x: number, y: number) => {};
+      let onCellClick = (x: number, y: number) => { };
       mockedDrawField.mockImplementation((fieldEl, field, cellClickHandler) => {
         onCellClick = cellClickHandler;
         fieldEl.innerHTML = `drawField(${JSON.stringify(field)})`;
@@ -165,7 +175,7 @@ describe("createGameOfLife", () => {
     });
     it("stops game with alert, when none alive", async () => {
       // eslint-disable-next-line @typescript-eslint/no-unused-vars
-      let onCellClick = (x: number, y: number) => {};
+      let onCellClick = (x: number, y: number) => { };
       mockedDrawField.mockImplementation((fieldEl, field, cellClickHandler) => {
         onCellClick = cellClickHandler;
         fieldEl.innerHTML = `drawField(${JSON.stringify(field)})`;
@@ -180,5 +190,94 @@ describe("createGameOfLife", () => {
       expect(window.alert).toHaveBeenCalledWith("Death on the block");
       expect(startbutton.innerHTML).toBe("Start");
     });
+  });
+});
+
+describe("Game speed control in createGameOfLife", () => {
+  let htmlElement: HTMLElement;
+  const originalAlert = window.alert;
+  beforeEach(() => {
+    htmlElement = document.createElement("div");
+    window.alert = jest.fn();
+  });
+  afterEach(() => {
+    jest.resetAllMocks();
+    window.alert = originalAlert;
+  });
+
+  it("changes game speed correctly", async () => {
+    let onCellClick = (x: number, y: number) => { };
+    // Переопределение мок-функции drawField для получения функции onCellClick
+    mockedDrawField.mockImplementation((fieldEl, field, cellClickHandler) => {
+      onCellClick = cellClickHandler;
+      fieldEl.innerHTML = `drawField(${JSON.stringify(field)})`;
+    });
+
+    createGameOfLife(2, 2, htmlElement);
+    onCellClick(0, 0); // активация клетки перед началом игры
+
+    const gameSpeedInput = htmlElement.querySelector(".gameSpeed") as HTMLInputElement;
+    const startbutton = htmlElement.querySelector(".startbutton") as HTMLButtonElement;
+    // Меняем скорость игры на 2000ms
+    gameSpeedInput.value = "2000";
+    const event = new Event('input', {
+      'bubbles': true,
+      'cancelable': true
+    });
+    gameSpeedInput.dispatchEvent(event);
+    startbutton.click();
+    await sleep(1500);
+
+    // Убедитесь, что в течение 1500ms состояние поля не изменилось
+    expect(htmlElement.querySelector(".field-wrapper")!.innerHTML).toBe(
+      `drawField(${JSON.stringify([
+        [1, 0],
+        [0, 0],
+      ])})`
+    );
+
+    await sleep(1000);
+
+    // После 2500ms (1500ms + 1000ms) состояние поля должно измениться
+    expect(htmlElement.querySelector(".field-wrapper")!.innerHTML).toBe(
+      `drawField(${JSON.stringify([
+        [0, 0],
+        [0, 0],
+      ])})`
+    );
+  });
+});
+
+describe("createGameOfLife - Game Speed Change During Play", () => {
+  let htmlElement: HTMLElement;
+  let originalSetInterval: typeof setInterval;
+
+  beforeEach(() => {
+    originalSetInterval = global.setInterval;
+    htmlElement = document.createElement("div");
+    createGameOfLife(5, 5, htmlElement);
+  });
+
+  afterEach(() => {
+    global.setInterval = originalSetInterval;
+  });
+
+  it("updates the game speed while the game is running", () => {
+    const gameSpeedInput = htmlElement.querySelector(".gameSpeed") as HTMLInputElement;
+    const startbutton = htmlElement.querySelector(".startbutton") as HTMLButtonElement;
+
+    const mockSetInterval = jest.fn(originalSetInterval);
+    (global.setInterval as any) = mockSetInterval;
+
+    startbutton.click();
+
+    gameSpeedInput.value = "1500";
+    const event = new Event('input', {
+      'bubbles': true,
+      'cancelable': true
+    });
+    gameSpeedInput.dispatchEvent(event);
+
+    expect(mockSetInterval).toHaveBeenCalledTimes(2);
   });
 });
