@@ -1,3 +1,5 @@
+import { getNumOfAliveNeighbours } from "./getNumOfAliveNeighbours"
+
 /**
  * отрисовка поля
  * @param field {number[][]} - состояние поля
@@ -15,15 +17,23 @@ export function drawField(
     `<tr>${row
       .map((cell: number, columnIndex: number) => {
         if (cell === 1) {
-          return `<td 
+          const aliveNeighbors = getNumOfAliveNeighbours(columnIndex, rowIndex, field);
+          if (aliveNeighbors < 2 || aliveNeighbors > 3) {
+            // Клетка обречена умереть в следующем поколении
+            return `<td 
           data-x=${columnIndex}
           data-y=${rowIndex}
-          class="cell-alive"></td>`;
-        }
-        return `<td 
+          class="cell-dying"></td>`;
+          }
+          return `<td 
         data-x=${columnIndex}
         data-y=${rowIndex}
-        class="cell-dead"></td>`;
+        class="cell-alive"></td>`;
+        }
+        return `<td 
+      data-x=${columnIndex}
+      data-y=${rowIndex}
+      class="cell-dead"></td>`;
       })
       .join("")}</tr>`;
 
