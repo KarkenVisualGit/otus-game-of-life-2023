@@ -4,11 +4,7 @@
 
 ## [Codecov](https://codecov.io/gh/KarkenVisualGit/otus-game-of-life-2023/tree/otus-game-of-life) Report
 
-> :exclamation: No coverage uploaded for pull request base (`main@3459201`). [Click here to learn what that means](https://docs.codecov.io/docs/error-reference?utm_medium=referral&utm_source=github&utm_content=checks&utm_campaign=pr+comments&utm_term=Karken+Turarov#section-missing-base-commit). The diff coverage is `n/a`.
-
-## Additional details and impacted files
-
-@@ Coverage Diff @@
+> :exclamation: No coverage uploaded for pull request base (`main@3459201`). [Click here to learn what that means](https://docs.codecov.io/docs/error-reference?utm_medium=referral&utm_source=github&utm_content=checks&utm_campaign=pr+comments&utm_term=Karken+Turarov#section-missing-base-commit). The diff coverage is `n/a`. @@ Coverage Diff @@
 
 ## main #1 +/-
 
@@ -20,8 +16,6 @@
  Misses ? 0  
  Partials ? 0
 
-````
-
 > Данное приложение создано в рамках учебного задания по реализации "Игры Жизнь" на языке Typescript
 
 ## Структура проекта
@@ -30,7 +24,10 @@
 
 ## Описание работы
 
-Реализован автостоп игры, когда все клетки умерли. Реализован механизм изменения размеров поля, в т.ч. на лету. Реализован механизм изменения скорости игры. Реализована подсветка клеток, которые, являясь живыми, должны умереть в следующем поколении (мертвые - белый цвет, живые - зеленый, обреченные на смерть - синий)
+- Реализован автостоп игры, когда все клетки умерли.
+- Реализован механизм изменения размеров поля, в т.ч. на лету.
+- Реализован механизм изменения скорости игры.
+- Реализована подсветка клеток, которые, являясь живыми, должны умереть в следующем поколении (мертвые - - белый цвет, живые - зеленый, обреченные на смерть - синий)
 
 - createGameOfLife: Модуль реализует методы создания и изменения размеров игрового поля, возможность по нажатию кнопки resize менять размеры полей, по нажатию кнопки запускать и останавливать игру, добавлена возможность регулировать скорость игры с помощью регулятора range.
 - drawField: Данный модуль отрисовывает поле с ячейками и предоставляет возможность помечать живые клетки.
@@ -48,7 +45,7 @@
 
 gh repo clone KarkenVisualGit/otus-game-of-life-2023
 
-````
+```
 
 2.Установить зависимости
 
