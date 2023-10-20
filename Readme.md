@@ -1,5 +1,7 @@
 # Игра Жизнь &middot;
 
+[![codecov](https://codecov.io/gh/KarkenVisualGit/otus-game-of-life-2023/graph/badge.svg?token=BWwgkWTL8k)](https://codecov.io/gh/KarkenVisualGit/otus-game-of-life-2023)
+
 > Данное приложение создано в рамках учебного задания по реализации "Игры Жизнь" на языке Typescript
 
 ## Структура проекта
