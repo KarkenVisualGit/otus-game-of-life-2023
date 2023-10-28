@@ -1,0 +1,89 @@
+.field-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  line-height: 1.5;
+  zoom: 2;
+}
+
+.label-elements {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+}
+
+.label-elements > * {
+  margin-bottom: 5px;
+}
+
+.gameSpeed,
+.sizeX,
+.sizeY {
+  margin: 5px;
+}
+
+.gameSpeed {
+  padding: 10px;
+}
+
+label {
+  margin-right: 5px;
+}
+
+.resizeButton {
+  zoom: 1.5;
+  margin: 10px;
+}
+
+.startbutton {
+  display: flex;
+  flex-wrap: wrap;
+  align-self: center;
+  zoom: 2;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.cell-alive {
+  background-color: #036d21;
+  height: 10px;
+  width: 10px;
+}
+
+.cell-dead {
+  background-color: #ffffff;
+  height: 10px;
+  width: 10px;
+}
+
+.cell-dying {
+  background-color: #063dab;
+  height: 10px;
+  width: 10px;
+}
+
+.gameSpeed {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+}
+
+.input-wrapper {
+  display: flex;
+  align-items: center;
+  margin: 5px;
+}
